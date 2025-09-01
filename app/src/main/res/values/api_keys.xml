@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="map_style_key" tools:ignore="TypographyDashes">315acfb4-64bb-45c8-8dcd-dceb3a00fdb7</string>
+</resources>
