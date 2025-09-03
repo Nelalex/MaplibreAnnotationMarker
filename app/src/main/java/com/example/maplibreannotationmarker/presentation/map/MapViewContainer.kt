@@ -28,7 +28,7 @@ fun MapViewContainer() {
                 getMapAsync { map ->
                     map.setStyle(
                         Style.Builder().fromUri(
-                            "https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json?api_key=$apiKey"
+                            "https://tiles.stadiamaps.com/styles/alidade_smooth.json?api_key=$apiKey"
                         )
                     )
                     map.uiSettings.isLogoEnabled = false

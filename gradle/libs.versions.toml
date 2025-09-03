@@ -32,8 +32,8 @@ android-application = { id = "com.android.application", version.ref = "android-g
 
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 navigation-safe-args = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigation-safe-args-gradle-plugin" }
+android-library = { id = "com.android.library", version.ref = "android-gradle" }
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -57,10 +57,8 @@ navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx",
 coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 
 dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
-dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
 dagger-android = { module = "com.google.dagger:dagger-android", version.ref = "dagger" }
 dagger-android-support = { module = "com.google.dagger:dagger-android-support", version.ref = "dagger" }
-dagger-android-processor = { module = "com.google.dagger:dagger-android-processor", version.ref = "dagger" }
 
 maplibre-basic = { group = "org.maplibre.gl", name = "android-sdk", version.ref = "maplibre-basic" }
 maplibre-building = { group = "org.maplibre.gl", name = "android-plugin-building-v9", version.ref = "maplibre-building" }
