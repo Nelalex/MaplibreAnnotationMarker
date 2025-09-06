@@ -1,6 +1,6 @@
 package com.example.annotationmarker
 
-import android.view.ViewGroup
+import android.util.Log
 import com.example.annotationmarker.ClickManager.Companion.DEFAULT_HITBOX_SIZE
 import com.example.annotationmarker.source.MapSourceManager
 import com.example.annotationmarker.util.Constants
@@ -9,8 +9,7 @@ import org.maplibre.android.maps.MapView
 import org.maplibre.geojson.Feature
 
 class AnnotationMarkerManager(
-    private val mapView: MapView,
-    private val container: ViewGroup,
+    private val mapView: MapView
 ) {
 
     companion object {
@@ -34,6 +33,7 @@ class AnnotationMarkerManager(
         sourceId: String = DEFAULT_SOURCE_ID,
         features: List<Feature>
     ) {
+        Log.d("addToSource", features.toString())
         val existing = mapSourceManager.getFeaturesFromSource(sourceId).toMutableList()
         existing.addAll(features)
         mapSourceManager.updateData(sourceId, existing)

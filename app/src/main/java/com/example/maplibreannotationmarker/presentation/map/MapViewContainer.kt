@@ -9,16 +9,18 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import com.example.annotationmarker.AnnotationMarkerManager
 import com.example.maplibreannotationmarker.R
 import org.maplibre.android.maps.MapView
 import org.maplibre.android.maps.Style
 
 @Composable
-fun MapViewContainer() {
+fun MapViewContainer(
+    onMapInitialized: (AnnotationMarkerManager) -> Unit = {}
+) {
     val context = LocalContext.current
     // Для апишки которая дает тайлы, можно потом сделать под локальную
     val apiKey = context.getString(R.string.map_style_key)
-
     val lifecycle = LocalLifecycleOwner.current.lifecycle
 
     AndroidView(
@@ -30,9 +32,11 @@ fun MapViewContainer() {
                         Style.Builder().fromUri(
                             "https://tiles.stadiamaps.com/styles/alidade_smooth.json?api_key=$apiKey"
                         )
-                    )
-                    map.uiSettings.isLogoEnabled = false
-                    map.uiSettings.isAttributionEnabled = false
+                    ) {
+                        map.uiSettings.isLogoEnabled = false
+                        map.uiSettings.isAttributionEnabled = false
+                        onMapInitialized(AnnotationMarkerManager(this))
+                    }
                 }
 
                 // Привязка жизненного цикла

@@ -53,6 +53,7 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.fragment.ktx)
+    implementation(project(":annotationMarker"))
 
     // Compose
     implementation(platform(libs.compose.bom))
