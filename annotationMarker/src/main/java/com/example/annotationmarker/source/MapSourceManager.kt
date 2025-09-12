@@ -1,6 +1,7 @@
 package com.example.annotationmarker.source
 
 import android.util.Log
+import com.example.annotationmarker.AnnotationMarkerManager.Companion.DEFAULT_SOURCE_ID
 import com.example.annotationmarker.layer.LayerPresets
 import com.example.annotationmarker.layer.LayerWithGroup
 import com.example.annotationmarker.layer.MaplibreLayerManager
@@ -35,7 +36,7 @@ open class MapSourceManager(
      * @param preset Функция, возвращающая список слоёв для источника.
      */
     fun buildSource(
-        sourceId: String = "defaultSource",
+        sourceId: String = DEFAULT_SOURCE_ID,
         preset: (String) -> List<LayerWithGroup> = LayerPresets::basePreset,
     ) {
         if (style == null || !style.isFullyLoaded) return
@@ -64,7 +65,7 @@ open class MapSourceManager(
      * @param sourceId Идентификатор источника.
      * @param newFeatures Новый список фич для отображения.
      */
-    fun updateData(sourceId: String = "defaultSource", newFeatures: List<Feature>) {
+    fun updateData(sourceId: String = DEFAULT_SOURCE_ID, newFeatures: List<Feature>) {
         if (style == null || !style.isFullyLoaded) return
         val existingSource = style.getSource(sourceId)
         if (existingSource == null) {
@@ -82,7 +83,7 @@ open class MapSourceManager(
      * (Пример: работа с временным рисованием, можно аналогично вызвать updateData с пустым списком)
      * @param sourceId Идентификатор источника.
      */
-    fun clearData(sourceId: String = "defaultSource") {
+    fun clearData(sourceId: String = DEFAULT_SOURCE_ID) {
         if (style == null || !style.isFullyLoaded) return
         style.getSourceAs<GeoJsonSource>(sourceId)
             ?.setGeoJson(FeatureCollection.fromFeatures(emptyList()))
