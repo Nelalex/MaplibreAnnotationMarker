@@ -26,6 +26,8 @@ open class MapSourceManager(
      */
     private val sourceLayers = mutableMapOf<String, List<LayerWithGroup>>()
 
+    fun getExistingSourceLayers() = sourceLayers.keys
+
     /**
      * Создаёт новый GeoJsonSource и соответствующие слои, либо очищает существующий.
      *
@@ -64,10 +66,15 @@ open class MapSourceManager(
      */
     fun updateData(sourceId: String = "defaultSource", newFeatures: List<Feature>) {
         if (style == null || !style.isFullyLoaded) return
-        val source = style.getSourceAs<GeoJsonSource>(sourceId) ?: return
-//        logSourcesAndLayers(style)
-        source.setGeoJson(FeatureCollection.fromFeatures(newFeatures))
+        val existingSource = style.getSource(sourceId)
+        if (existingSource == null) {
+            val geoJsonSource = GeoJsonSource(sourceId, FeatureCollection.fromFeatures(newFeatures))
+            style.addSource(geoJsonSource)
+        } else if (existingSource is GeoJsonSource) {
+            existingSource.setGeoJson(FeatureCollection.fromFeatures(newFeatures))
+        }
     }
+
 
     /**
      * Очищает данные GeoJson-источника (удаляет все фичи).
@@ -149,27 +156,6 @@ open class MapSourceManager(
         }
         sourceLayers.remove(sourceId)
         style.removeSource(sourceId)
-    }
-
-    /**
-     * Для работы с источникам в других местах, например в MBTilesManager
-     *
-     * @param sourceId Идентификатор источника.
-     */
-
-    fun setGeoJsonSource(
-        sourceId: String,
-        featureCollection: FeatureCollection,
-    ) {
-        if (style == null || !style.isFullyLoaded) return
-        val existingSource = style.getSource(sourceId)
-
-        if (existingSource == null) {
-            val geoJsonSource = GeoJsonSource(sourceId, featureCollection)
-            style.addSource(geoJsonSource)
-        } else if (existingSource is GeoJsonSource) {
-            existingSource.setGeoJson(featureCollection)
-        }
     }
 
     fun logSourcesAndLayers(style: Style) {

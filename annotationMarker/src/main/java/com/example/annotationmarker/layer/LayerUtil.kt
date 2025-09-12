@@ -91,7 +91,7 @@ object MaplibreLayersUtil {
                         Expression.division(
                             Expression.get(TEXT_SIZE_PROPERTY),
                             literal(1.3)
-                        ), // +-2.3 ориг
+                        ),
                     )
                 ),
                 iconSize(
@@ -250,7 +250,7 @@ object MaplibreLayersUtil {
                         Expression.division(
                             Expression.get(TEXT_SIZE_PROPERTY),
                             literal(1.3)
-                        ), // +-2.3 ориг
+                        ),
                     )
                 ),
                 textAllowOverlap(true),

@@ -57,7 +57,6 @@ object MaplibreObjectsUtil {
             return null
         }
 
-        // Преобразуем LatLng -> Point
         var ring = points.map { Point.fromLngLat(it.longitude, it.latitude) }
 
         // Проверяем замкнутость: если первая и последняя не совпадают → добавляем
@@ -65,7 +64,6 @@ object MaplibreObjectsUtil {
             ring = ring + ring.first()
         }
 
-        // Оборачиваем в список списков (GeoJSON требует список колец)
         val polygon = Polygon.fromLngLats(listOf(ring))
 
         return Feature.fromGeometry(polygon).apply {

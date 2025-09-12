@@ -45,7 +45,7 @@ fun AppScreen() {
                     )
                 )
                 manager?.mapSourceManager?.buildSource()
-                manager?.addToSourceByTypeId(features = listOf(x))
+                manager?.addToSource(features = listOf(x))
             },
             colors = IconButtonDefaults.iconButtonColors(contentColor = Color.Red),
             modifier = Modifier.padding(top = 50.dp)
